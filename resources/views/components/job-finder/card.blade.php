@@ -16,7 +16,7 @@
                 <tr class="border-y-2 border-gray-200">
                     <th class="text-left font-bold px-4 py-2">障害</th>
                     <td>
-                        {{ join(",", $jobFinder->handicaps->map(fn ($item) => $item->name)->all()) }}
+                        {{ join(", ", $jobFinder->handicaps->map(fn ($item) => $item->name)->all()) }}
                         (手帳{{ $jobFinder->has_certificate ? 'あり' : 'なし'}})
                     </td>
                 </tr>
@@ -38,7 +38,7 @@
             </table>
         </div>
 
-        <a href="#">
+        <a href="{{ route('portfolios.show', $jobFinder->id) }}">
             @if ($jobFinder->works_count > 0)
                 <x-form.button class="rounded-full w-full justify-center mt-8">ポートフォリオを見る</x-form.button>
             @else

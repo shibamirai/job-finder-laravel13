@@ -23,4 +23,20 @@ class PortfolioController extends Controller
             'jobFinders' => $jobFinders
         ]);
     }
+
+    public function show(JobFinder $jobFinder)
+    {
+        $jobFinder->load([
+            'employmentPattern:id,name',
+            'gender:id,name',
+            'handicaps:name',
+            'occupation:id,name',
+            'skills:name',
+            'works',
+        ]);
+
+        return view('portfolios.show', [
+            'jobFinder' => $jobFinder
+        ]);
+    }
 }
