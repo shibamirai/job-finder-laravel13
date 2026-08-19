@@ -19,11 +19,13 @@
             <x-nav />
 
             <!-- Page Heading -->
-            <header class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
-                <h1 class="text-xl font-bold text-center tracking-widest">
-                    {{ $header }}
-                </h1>
-            </header>
+            @isset ($header)
+                <header class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
+                    <h1 class="text-xl font-bold text-center tracking-widest">
+                        {{ $header }}
+                    </h1>
+                </header>
+            @endisset
 
             <!-- Page Content -->
             <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

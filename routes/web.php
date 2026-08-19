@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\PortfolioController;
+use App\Http\Controllers\StatisticController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', 'portfolios')->name('home');
@@ -11,3 +12,5 @@ Route::prefix('portfolios')->group(function() {
         Route::get('/{jobFinder}', 'show')->name('portfolios.show');
     });
 });
+
+Route::get('/statistics', [StatisticController::class, 'index'])->name('statistics');

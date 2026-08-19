@@ -18,6 +18,9 @@
                     <x-nav.link :href="route('portfolios.index')" :active="request()->routeIs('portfolios.index')">
                         ポートフォリオ
                     </x-nav.link >
+                    <x-nav.link :href="route('statistics')" :active="request()->routeIs('statistics')">
+                        統計情報
+                    </x-nav.link >
                 </div>
             </div>
 
@@ -38,6 +41,9 @@
         <div class="pt-2 pb-3 space-y-1">
             <x-nav.responsive-link :href="route('portfolios.index')" :active="request()->routeIs('portfolios.index')">
                 ポートフォリオ
+            </x-nav.responsive-link>
+            <x-nav.responsive-link :href="route('statistics')" :active="request()->routeIs('statistics')">
+                統計情報
             </x-nav.responsive-link>
         </div>
     </div>
