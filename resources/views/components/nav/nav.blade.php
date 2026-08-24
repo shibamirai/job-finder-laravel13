@@ -21,6 +21,11 @@
                     <x-nav.link :href="route('statistics')" :active="request()->routeIs('statistics')">
                         統計情報
                     </x-nav.link >
+                    @auth
+                        <x-nav.link :href="route('job-finders.index')" :active="request()->routeIs('job-finders.index')">
+                            就職者一覧
+                        </x-nav.link >
+                    @endif
                 </div>
             </div>
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\JobFinderController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\StatisticController;
@@ -23,3 +24,11 @@ Route::prefix('portfolios')->group(function() {
 });
 
 Route::get('statistics', [StatisticController::class, 'index'])->name('statistics');
+
+Route::middleware('auth')->group(function () {
+    Route::prefix('job-finders')->group(function() {
+        Route::controller(JobFinderController::class)->group(function() {
+            Route::get('', 'index')->name('job-finders.index');
+        });
+    });
+});
