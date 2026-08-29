@@ -25,6 +25,9 @@
                         <x-nav.link :href="route('job-finders.index')" :active="request()->routeIs('job-finders.index')">
                             就職者一覧
                         </x-nav.link >
+                        <x-nav.link :href="route('job-finders.create')" :active="request()->routeIs('job-finders.create')">
+                            情報登録
+                        </x-nav.link >
                     @endif
                 </div>
             </div>
@@ -86,6 +89,13 @@
                 統計情報
             </x-nav.responsive-link>
             @auth
+                <x-nav.responsive-link :href="route('job-finders.index')" :active="request()->routeIs('job-finders.index')">
+                    就職者一覧
+                </x-nav.responsive-link >
+                <x-nav.responsive-link :href="route('job-finders.create')" :active="request()->routeIs('job-finders.create')">
+                    情報登録
+                </x-nav.responsive-link >
+
                 <!-- Responsive Settings Options -->
                 <div class="pt-4 pb-1 border-t border-gray-200">
                     <div class="px-4">

@@ -29,6 +29,9 @@ Route::middleware('auth')->group(function () {
     Route::prefix('job-finders')->group(function() {
         Route::controller(JobFinderController::class)->group(function() {
             Route::get('', 'index')->name('job-finders.index');
+            Route::get('create', 'create')->name('job-finders.create');
+            Route::post('store', 'store')->name('job-finders.store');
+            Route::get('{jobFinder}/edit', 'edit')->name('job-finders.edit');
         });
     });
 });
