@@ -32,6 +32,7 @@ Route::middleware('auth')->group(function () {
             Route::get('create', 'create')->name('job-finders.create');
             Route::post('store', 'store')->name('job-finders.store');
             Route::get('{jobFinder}/edit', 'edit')->name('job-finders.edit');
+            Route::patch('{jobFinder}', 'update')->name('job-finders.update');
         });
     });
 });

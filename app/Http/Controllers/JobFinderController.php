@@ -74,7 +74,6 @@ class JobFinderController extends Controller
             $jobFinder->skills()->sync($skill_ids);
             DB::commit();
         } catch (Exception $e) {
-            dd($e);
             DB::rollBack();
             return back()->with('success', '登録に失敗しました');
         }
@@ -98,9 +97,45 @@ class JobFinderController extends Controller
         ]);
     }
 
-    public function update(Request $request, string $id)
+    public function update(JobFinderRequest $request, JobFinder $jobFinder)
     {
-        //
+        DB::beginTransaction();
+        try {
+            // 入力された職種をDBから取得、なければ追加
+            $occupation = Occupation::firstOrCreate([
+                'name' => $request->safe()->occupation
+            ]);
+
+            // 就職者を更新
+            $attributes = $request->safe()
+                ->merge([
+                    'occupation_id' => $occupation->id,
+                    'has_certificate' => $request->boolean('has_certificate'),
+                    'is_handicaps_opened' => $request->boolean('is_handicaps_opened')
+                ])
+                ->except(['skills', 'occupation', 'handicaps']);
+            $jobFinder->updateOrFail($attributes);
+
+            // 就職者の障害を更新
+            $jobFinder->handicaps()->sync($request->safe()->only('handicaps')['handicaps']);
+
+            // 入力された習得スキルをDBから取得、なければ追加
+            $skill_ids = [];
+            foreach ($request->safe()->skills as $skillName) {
+                $skill = Skill::firstOrCreate([
+                    'name' => $skillName
+                ]);
+                $skill_ids[] = $skill->id;
+            }
+            // JobFinder と Skill の関連を作り直す
+            $jobFinder->skills()->sync($skill_ids);
+            DB::commit();
+        } catch (Exception $e) {
+            DB::rollBack();
+            return back()->with('success', '更新に失敗しました');
+        }
+
+        return redirect(route('job-finders.edit', $jobFinder))->with('success', $jobFinder->name .'さんを更新しました！');
     }
 
     public function destroy(string $id)

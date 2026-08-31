@@ -57,7 +57,7 @@
                                 {{ $jobFinder->periodOfUse }}
                             </td>
                             <td class="flex py-3">
-                                <a href="#">
+                                <a href="{{ route('job-finders.edit', $jobFinder) }}">
                                     <x-form.button class="text-xs w-16 rounded-md mr-1" type="button">編集</x-form.button>
                                 </a>
                                 <form action="#" method="post" class="inline-block">

@@ -4,7 +4,8 @@
     <h1 class="text-xl text-cyan-500 text-center font-bold">利用者さんについて</h1>
 
 @if ($jobFinder)
-    <form action="{{ route('job-finders.store') }}" method="post" class="mt-4 space-y-4">
+    <form action="{{ route('job-finders.update', $jobFinder) }}" method="post" class="mt-4 space-y-4">
+        @method('patch')
 @else
     <form action="{{ route('job-finders.store') }}" method="post" class="mt-4 space-y-4">
 @endif
@@ -111,7 +112,13 @@
         </x-form.job-finder>
 
         <div class="text-center mt-8">
-            <x-form.button class="rounded-full w-36">登録</x-form.button> 
+            <x-form.button class="rounded-full w-36">
+@if ($jobFinder)
+                更新
+@else
+                登録
+@endif
+            </x-form.button> 
         </div>
     </form>
 </div>
