@@ -18,7 +18,7 @@ class JobFinderRequest extends FormRequest
     {
         return [
             'avatar' => 'required',
-            'name' => ['required', Rule::unique('job_finders')->ignore($this->job_finder)],
+            'name' => ['required', Rule::unique('job_finders')->ignore($this->jobFinder)],
             'gender_id' => 'required',
             'age' => 'required|integer|between:18,65',
             'handicaps' => 'nullable',
