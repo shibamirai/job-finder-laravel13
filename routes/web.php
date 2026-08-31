@@ -33,6 +33,7 @@ Route::middleware('auth')->group(function () {
             Route::post('store', 'store')->name('job-finders.store');
             Route::get('{jobFinder}/edit', 'edit')->name('job-finders.edit');
             Route::patch('{jobFinder}', 'update')->name('job-finders.update');
+            Route::delete('{jobFinder}', 'destroy')->name('job-finders.destroy');
         });
     });
 });

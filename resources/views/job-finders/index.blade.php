@@ -60,10 +60,15 @@
                                 <a href="{{ route('job-finders.edit', $jobFinder) }}">
                                     <x-form.button class="text-xs w-16 rounded-md mr-1" type="button">編集</x-form.button>
                                 </a>
-                                <form action="#" method="post" class="inline-block">
+                                <form x-data
+                                    @submit.prevent="if (window.confirm('削除しますか？')) { $el.submit() }"
+                                    class="inline-block"
+                                    action="{{ route('job-finders.destroy', $jobFinder) }}"
+                                    method="post"
+                                >
                                     @csrf
                                     @method('delete')
-                                    <x-form.button class="text-xs w-16 rounded-md" onclick="return confirm('削除しますか？');">削除</x-form.button>
+                                    <x-form.button class="text-xs w-16 rounded-md">削除</x-form.button>
                                 </form>
                             </td>
                         </tr>

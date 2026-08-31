@@ -138,8 +138,18 @@ class JobFinderController extends Controller
         return redirect(route('job-finders.edit', $jobFinder))->with('success', $jobFinder->name .'さんを更新しました！');
     }
 
-    public function destroy(string $id)
+    public function destroy(JobFinder $jobFinder)
     {
-        //
+        try {
+            DB::transaction(function () use ($jobFinder) {
+                $jobFinder->handicaps()->detach();
+                $jobFinder->skills()->detach();
+                $jobFinder->deleteOrFail();
+            });
+        } catch (Exception $e) {
+            return back()->with('success', $jobFinder->name .'さんの削除に失敗しました');
+        }
+
+        return back()->with('success', $jobFinder->name .'さんを削除しました！');
     }
 }
