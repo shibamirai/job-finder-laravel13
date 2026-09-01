@@ -56,7 +56,7 @@
     </div>
     <div class="flex-1 lg:px-10 py-8">
         @foreach ($jobFinder->works as $work)
-            <x-job-finder.work :work="$work" />
+            <x-work :work="$work" />
         @endforeach
     </div>
 </div>

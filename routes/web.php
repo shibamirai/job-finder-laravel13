@@ -4,6 +4,7 @@ use App\Http\Controllers\JobFinderController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\StatisticController;
+use App\Http\Controllers\WorkController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('', 'portfolios')->name('home');
@@ -30,10 +31,14 @@ Route::middleware('auth')->group(function () {
         Route::controller(JobFinderController::class)->group(function() {
             Route::get('', 'index')->name('job-finders.index');
             Route::get('create', 'create')->name('job-finders.create');
-            Route::post('store', 'store')->name('job-finders.store');
+            Route::post('', 'store')->name('job-finders.store');
             Route::get('{jobFinder}/edit', 'edit')->name('job-finders.edit');
             Route::patch('{jobFinder}', 'update')->name('job-finders.update');
             Route::delete('{jobFinder}', 'destroy')->name('job-finders.destroy');
+        });
+        Route::controller(WorkController::class)->group(function() {
+            Route::get('{jobFinder}/works/create', 'create')->name('works.create');
+            Route::post('{jobFinder}/works', 'store')->name('works.store');
         });
     });
 });
