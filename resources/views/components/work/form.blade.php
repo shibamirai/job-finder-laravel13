@@ -64,13 +64,20 @@
         </x-form.job-finder>
 
         <div class="mt-8 text-center">
-            <x-form.button class="rounded-full w-36">
 @isset($work)
-                更新
+            <x-form.button class="rounded-full w-36">更新</x-form.button>
+            <x-form.button class="rounded-full w-36" form="delete-form">削除</x-form.button>
 @else
-                追加
+            <x-form.button class="rounded-full w-36">追加</x-form.button>
 @endisset
-            </x-form.button>
         </div>
     </form>
+
+@isset($work)
+    <form id="delete-form" method="post" action="{{ route('works.destroy', [$jobFinder, $work]) }}">
+        @method('delete')
+        @csrf
+    </form>
+@endisset
+
 </div>

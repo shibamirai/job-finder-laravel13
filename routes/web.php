@@ -41,6 +41,7 @@ Route::middleware('auth')->group(function () {
             Route::post('{jobFinder}/works', 'store')->name('works.store');
             Route::get('{jobFinder}/works/{work}/edit', 'edit')->name('works.edit');
             Route::patch('{jobFinder}/works/{work}', 'update')->name('works.update');
+            Route::delete('{jobFinder}/works/{work}', 'destroy')->name('works.destroy');
         });
     });
 });

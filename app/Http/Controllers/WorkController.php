@@ -51,4 +51,10 @@ class WorkController extends Controller
 
         return redirect(route('job-finders.edit', $jobFinder))->with('success', 'ポートフォリオを更新しました！');
     }
+
+    public function destroy(JobFinder $jobFinder, Work $work)
+    {
+        $work->deleteOrFail();
+        return redirect(route('job-finders.edit', $jobFinder))->with('success', 'ポートフォリオを削除しました！');
+    }
 }
