@@ -3,7 +3,12 @@
 <div class="max-w-4xl mx-auto bg-white shadow-md rounded px-10 py-8 mb-4">
     <h1 class="text-xl text-cyan-500 text-center font-bold">成果物（ポートフォリオ）について</h1>
 
+@isset($work)
+    <form action="{{ route('works.update', [$jobFinder, $work]) }}" method="post" class="mt-4 space-y-4">
+        @method('patch')
+@else
     <form action="{{ route('works.store', $jobFinder) }}" method="POST" class="mt-4 space-y-4">
+@endisset
         @csrf
 
         <!-- 作品の内容 -->
@@ -59,7 +64,13 @@
         </x-form.job-finder>
 
         <div class="mt-8 text-center">
-            <x-form.button class="rounded-full w-36">追加</x-form.button>
+            <x-form.button class="rounded-full w-36">
+@isset($work)
+                更新
+@else
+                追加
+@endisset
+            </x-form.button>
         </div>
     </form>
 </div>

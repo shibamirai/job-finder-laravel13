@@ -8,14 +8,24 @@
             {{ $jobFinder->name }}さんについて
         </x-tab.item>
 
+@foreach ($jobFinder->works as $work)
+        <x-tab.item :href="route('works.edit', [$jobFinder, $work])" :active="isset($workId) && $workId == $work->id">
+            作品「{{ Str::limit($work->content, 10, '...') }}」
+        </x-tab.item>
+@endforeach
+
         <x-tab.item :href="route('works.create', $jobFinder)" :active="isset($workId) && $workId == 0">
             ポートフォリオ追加
         </x-tab.item>
     </x-tab>
 
 @isset($workId)
-    <x-work.form :jobFinder="$jobFinder" />
+    @if ($workId == 0)
+        <x-work.form :jobFinder="$jobFinder" />
+    @else
+        <x-work.form :jobFinder="$jobFinder" :work="$jobFinder->works->find($workId)" />
+    @endif
 @else
     <x-job-finder.form :jobFinder="$jobFinder" />
-@endif
+@endisset
 </x-layout>

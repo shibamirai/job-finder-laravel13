@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
         Route::controller(WorkController::class)->group(function() {
             Route::get('{jobFinder}/works/create', 'create')->name('works.create');
             Route::post('{jobFinder}/works', 'store')->name('works.store');
+            Route::get('{jobFinder}/works/{work}/edit', 'edit')->name('works.edit');
+            Route::patch('{jobFinder}/works/{work}', 'update')->name('works.update');
         });
     });
 });

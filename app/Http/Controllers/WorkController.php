@@ -32,4 +32,23 @@ class WorkController extends Controller
 
         return redirect(route('job-finders.edit', $jobFinder))->with('success', 'ポートフォリオを追加しました！');
     }
+
+    public function edit(JobFinder $jobFinder, Work $work)
+    {
+        return view('job-finders.edit', [
+            'jobFinder' => $jobFinder,
+            'workId' => $work->id,
+        ]);
+    }
+
+    public function update(JobFinder $jobFinder, Work $work, WorkRequest $request)
+    {
+        $attributes = $request->safe()->only([
+            'content', 'title', 'url', 'languages', 'creation_time', 'description',
+        ]);
+
+        $work->updateOrFail($attributes);
+
+        return redirect(route('job-finders.edit', $jobFinder))->with('success', 'ポートフォリオを更新しました！');
+    }
 }
