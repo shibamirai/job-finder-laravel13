@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\JobFinderController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\OccupationController;
 use App\Http\Controllers\PortfolioController;
 use App\Http\Controllers\StatisticController;
 use App\Http\Controllers\WorkController;
@@ -42,6 +43,14 @@ Route::middleware('auth')->group(function () {
             Route::get('{jobFinder}/works/{work}/edit', 'edit')->name('works.edit');
             Route::patch('{jobFinder}/works/{work}', 'update')->name('works.update');
             Route::delete('{jobFinder}/works/{work}', 'destroy')->name('works.destroy');
+        });
+    });
+    Route::prefix('occupations')->group(function() {
+        Route::controller(OccupationController::class)->group(function() {
+            Route::get('', 'index')->name('occupations.index');
+            Route::post('', 'store')->name('occupations.store');
+            Route::patch('{occupation}', 'update')->name('occupations.update');
+            Route::delete('{occupation}', 'destroy')->name('occupations.destroy');
         });
     });
 });

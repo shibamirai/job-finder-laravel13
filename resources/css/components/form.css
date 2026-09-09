@@ -48,6 +48,10 @@ legend {
         outline: 3px solid var(--color-cyan-100);
         outline-offset: 1px;
     }
+
+    &:focus-visible {
+        outline: 2px solid var(--color-cyan-200);
+    }
 }
 
 .radio {
@@ -115,4 +119,8 @@ legend {
 
 .form-muted-icon:hover {
     color: oklch(0.1 0 0);
+}
+
+[x-cloak] {
+    display: none !important;
 }

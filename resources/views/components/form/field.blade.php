@@ -21,6 +21,16 @@
         >
             {{ $slot }}
         </select>
+    @elseif ($type === 'checkbox')
+        <lable class="label flex items-center gap-2">
+            <input
+                type="{{ $type }}"
+                name="{{ $name }}"
+                class="checkbox"
+                @checked(old($name, $value))
+                {{ $attributes }}
+            >{{ $slot }}
+        </label>
     @else
         <input
             type="{{ $type }}"

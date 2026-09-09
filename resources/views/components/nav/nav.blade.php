@@ -28,6 +28,9 @@
                         <x-nav.link :href="route('job-finders.create')" :active="request()->routeIs('job-finders.create')">
                             情報登録
                         </x-nav.link >
+                        <x-nav.link :href="route('occupations.index')" :active="request()->routeIs('occupations.index')">
+                            職種編集
+                        </x-nav.link >
                     @endif
                 </div>
             </div>
@@ -94,6 +97,9 @@
                 </x-nav.responsive-link >
                 <x-nav.responsive-link :href="route('job-finders.create')" :active="request()->routeIs('job-finders.create')">
                     情報登録
+                </x-nav.responsive-link >
+                <x-nav.responsive-link :href="route('occupations.index')" :active="request()->routeIs('occupations.index')">
+                    職種編集
                 </x-nav.responsive-link >
 
                 <!-- Responsive Settings Options -->
