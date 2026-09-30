@@ -34,5 +34,6 @@
         >
             <x-icons.close class="rotate-45" />
         </button>
+        <span class="font-bold text-red-600">（＋を押して確定）</span>
     </div>
 </div>

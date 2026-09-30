@@ -64,7 +64,7 @@ class JobFinderController extends Controller
 
             // 入力された習得スキルをDBから取得、なければ追加
             $skill_ids = [];
-            foreach ($request->safe()->skills as $skillName) {
+            foreach ($request->safe()->skills ?? [] as $skillName) {
                 $skill = Skill::firstOrCreate([
                     'name' => $skillName
                 ]);
@@ -121,7 +121,7 @@ class JobFinderController extends Controller
 
             // 入力された習得スキルをDBから取得、なければ追加
             $skill_ids = [];
-            foreach ($request->safe()->skills as $skillName) {
+            foreach ($request->safe()->skills ?? [] as $skillName) {
                 $skill = Skill::firstOrCreate([
                     'name' => $skillName
                 ]);
