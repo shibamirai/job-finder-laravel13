@@ -13,10 +13,11 @@ const backgroundColor = [
     ];
 
 /*
- * 年齢：棒グラフ
+ * 年齢：棒グラフ + 折れ線グラフ
  */
 const age = {
     data: [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    it: [0, 0, 0, 0, 0, 0, 0, 0, 0],
     labels: ['～24歳', '25～29歳', '30～34歳', '35～39歳', '40～44歳', '45～49歳', '50～54歳', '55～59歳', '60歳以上'],
 }
 
@@ -42,10 +43,38 @@ for (let i = 0; i < ages.length; i++) {
     }
 }
 
+for (let i = 0; i < agesIt.length; i++) {
+    if (agesIt[i] < 25) {
+        age.it[0]++;
+    } else if (agesIt[i] < 30) {
+        age.it[1]++;
+    } else if (agesIt[i] < 35) {
+        age.it[2]++;
+    } else if (agesIt[i] < 40) {
+        age.it[3]++;
+    } else if (agesIt[i] < 45) {
+        age.it[4]++;
+    } else if (agesIt[i] < 50) {
+        age.it[5]++;
+    } else if (agesIt[i] < 55) {
+        age.it[6]++;
+    } else if (agesIt[i] < 60) {
+        age.it[7]++;
+    } else {
+        age.it[8]++;
+    }
+}
+
 new Chart(document.getElementById("ageChart"), {
     type: 'bar',
     data: {
         datasets: [{
+            label: '折れ線：IT系',
+            type: "line",
+            fill: false,
+            data: age.it,
+            backgroundColor: backgroundColor,
+        }, {
             data: age.data,
             backgroundColor: backgroundColor,
         }],

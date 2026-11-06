@@ -31,6 +31,8 @@ class StatisticController extends Controller
             'daysMax' => $daysMax,
             // 就職者年齢の配列
             'ages' => $jobFinders->map(fn ($jobFinder) => $jobFinder->age),
+            // IT系就職者年齢の配列
+            'agesIt' => $jobFinders->filter(fn ($jobFinder) => $jobFinder->occupation->is_it)->map(fn ($jobFinder) => $jobFinder->age),
             // 雇用形態別人数
             'employmentPatterns' => EmploymentPattern::withCount('workers')->orderBy('sort')->get()->toArray(),
             // IT系職種の人数

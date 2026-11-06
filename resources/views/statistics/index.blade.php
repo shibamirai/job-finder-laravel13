@@ -47,6 +47,7 @@
     <script>
         const total = @js($total);
         const ages = @js($ages);
+        const agesIt = Object.values(@js($agesIt));
         const employmentPatterns = @js($employmentPatterns);
         const countIT = @js($countIT);
         const skills = @js($skills);
